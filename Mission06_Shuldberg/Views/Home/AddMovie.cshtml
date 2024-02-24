@@ -11,17 +11,16 @@
 </header>
 <div class="center-form">
 <form id="movieForm" method="post">
+    <input type="hidden" asp-for="MovieId"/>
+    <input type="hidden" asp-for="Category" />
     <div class="form-group">
-        <label asp-for="Category">Category:</label>
-        <select asp-for="Category">
-        <option value="Action/Adventure">Action/Adventure</option>
-        <option value="Comedy">Comedy</option>
-        <option value="Drama">Drama</option>
-        <option value="Family">Family</option>
-        <option value="Horror/Suspense">Horror/Suspense</option>
-        <option value="Miscellaneous">Miscellaneous</option>
-        <option value="Television">Television</option>
-        <option value="VHS">VHS</option>
+        <label asp-for="CategoryId">Category:</label>
+        <select asp-for="CategoryId">
+            <option value="999">Select a category</option>
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
         </select>
     </div>
     <div class="form-group">
@@ -53,13 +52,22 @@
         </select>
     </div>
     <div class="form-group">
-        <label asp-for="Lent_To">Lent-To:</label>
-        <input type="text" asp-for="Lent_To">
+        <label asp-for="CopiedToPlex">Copied to Plex:</label>
+        <select asp-for="CopiedToPlex">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="LentTo">Lent-To:</label>
+        <input type="text" asp-for="LentTo">
     </div>
     <div class="form-group">
         <label asp-for="Notes">Notes:</label>
         <textarea asp-for="Notes" maxlength="25"></textarea>
     </div>
     <button type="submit">Submit</button>
+
+    <div asp-validation-summary="All"></div>
 </form>
 </div>

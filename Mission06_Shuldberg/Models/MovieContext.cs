@@ -9,6 +9,7 @@ namespace Mission06_Shuldberg.Models
 
         //Create the table
         public DbSet<Class> Movies { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 
 }
